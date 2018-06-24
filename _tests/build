@@ -8,6 +8,15 @@ set -x
 # Execute Markdown Linter
 mdl _posts _pages --style _linter/markdown-linter-style.rb
 
+
+wget https://github.com/felicianotech/md-proofer/releases/download/v0.2.0/md-proofer-v0.2.0-linux-amd64.tar.gz
+tar xfz md-proofer-v*.tar.gz
+sudo chmod +x ./md-proofer
+
+echo "Test CircleCI 2.0 Markdown files"
+echo "===================================================================================="
+./md-proofer lint _posts/
+
 # Skips validation checks that take a long time
 htmlproofer_args_extra=""
 if [ "$1" = "--quick" ]; then
